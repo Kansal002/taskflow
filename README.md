@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/Kansal002/taskflow/actions/workflows/ci.yml/badge.svg)](https://github.com/Kansal002/taskflow/actions/workflows/ci.yml)
 
-**Live demo:** `https://<your-site>.netlify.app`
+**Live demo:** [abhinav-taskflow.netlify.app](https://abhinav-taskflow.netlify.app)
 
 > **Try the real-time sync:** open the demo in **two browser tabs** side by side, then drag a card or
 > edit a title in one — it appears instantly in the other. No account, no backend needed.
@@ -211,7 +211,7 @@ Leave it empty to use local (cross-tab) mode.
 
 1. Render → **New → Blueprint** → pick the repo. `render.yaml` defines a free Node web service that builds
    `apps/server`, starts `node apps/server/dist/index.js`, and health-checks `/health`. Render provides `PORT`.
-2. Optionally set `ALLOWED_ORIGINS=https://<your-site>.netlify.app` to restrict which sites may connect.
+2. Optionally set `ALLOWED_ORIGINS=https://abhinav-taskflow.netlify.app` to restrict which sites may connect.
 3. A `Dockerfile` (`apps/server/Dockerfile`) is included if you prefer a container host.
 
 ### 3. Connect them
