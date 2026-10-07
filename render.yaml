@@ -1,0 +1,20 @@
+# Render Blueprint for the TaskFlow sync server (free tier).
+# Render → New → Blueprint → pick this repo. After it deploys, copy the
+# service URL, change https:// to wss://, and set it as VITE_WS_URL on Netlify.
+services:
+  - type: web
+    name: taskflow-sync
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm ci && npm run build -w @taskflow/server
+    startCommand: node apps/server/dist/index.js
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: '24'
+      # Comma-separated list of origins allowed to open WebSocket connections,
+      # e.g. https://your-site.netlify.app. Leave unset to allow any origin.
+      - key: ALLOWED_ORIGINS
+        sync: false

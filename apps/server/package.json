@@ -1,0 +1,23 @@
+{
+  "name": "@taskflow/server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Authoritative WebSocket sync server for TaskFlow boards.",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node22 --format=esm --external:ws --outfile=dist/index.js --sourcemap",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@taskflow/shared": "^1.0.0",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.2",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15"
+  }
+}

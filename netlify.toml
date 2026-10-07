@@ -1,0 +1,31 @@
+# Netlify deploys the static web app (apps/web). The WebSocket sync server
+# can't run on Netlify — deploy apps/server to Render (see render.yaml) and set
+# VITE_WS_URL in Netlify's environment variables. Without it, the app runs in
+# local mode: tabs of the same browser sync via BroadcastChannel.
+
+[build]
+  # Run from the repo root so npm workspaces (packages/shared) resolve.
+  base = "/"
+  command = "npm ci && npm run build -w @taskflow/web"
+  publish = "apps/web/dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Single-page app: let React Router handle /b/:boardId and friends.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
